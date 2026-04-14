@@ -1,0 +1,246 @@
+{
+  "rooms": {
+    "E2LA7": {
+      "code": "E2LA7",
+      "host_id": "d8455211b6684b5ca26c53bdae11a8e0",
+      "created_at": 1776032078.6140053,
+      "players": {
+        "84406d2ca617426b889d89e827641b1e": {
+          "id": "84406d2ca617426b889d89e827641b1e",
+          "name": "Quentin",
+          "score": 0,
+          "joined_at": 1776032078.6140053,
+          "removed": true
+        },
+        "392d36c46e9246bdba07730ba4440924": {
+          "id": "392d36c46e9246bdba07730ba4440924",
+          "name": "Enola",
+          "score": 0,
+          "joined_at": 1776032138.2628434,
+          "removed": true
+        },
+        "d8455211b6684b5ca26c53bdae11a8e0": {
+          "id": "d8455211b6684b5ca26c53bdae11a8e0",
+          "name": "Nathan",
+          "score": 0,
+          "joined_at": 1776033031.9886332,
+          "removed": true
+        }
+      },
+      "match": {
+        "status": "vote",
+        "round_index": 1,
+        "civilian_word": "Malcolm",
+        "undercover_word": "Lincoln",
+        "undercover_id": "d8455211b6684b5ca26c53bdae11a8e0",
+        "alive_ids": [],
+        "eliminated_ids": [],
+        "assignments": {
+          "84406d2ca617426b889d89e827641b1e": {
+            "role": "civil",
+            "word": "Malcolm"
+          },
+          "392d36c46e9246bdba07730ba4440924": {
+            "role": "civil",
+            "word": "Malcolm"
+          },
+          "d8455211b6684b5ca26c53bdae11a8e0": {
+            "role": "undercover",
+            "word": "Lincoln"
+          }
+        },
+        "ready_ids": [
+          "84406d2ca617426b889d89e827641b1e",
+          "392d36c46e9246bdba07730ba4440924",
+          "d8455211b6684b5ca26c53bdae11a8e0"
+        ],
+        "votes": {},
+        "last_eliminated_id": null,
+        "winner": null,
+        "winner_reason": "",
+        "created_at": 1776033109.666278
+      },
+      "chat_log": []
+    },
+    "YF86U": {
+      "code": "YF86U",
+      "host_id": "c120fed6f18a4f689ce7afde0d993a46",
+      "created_at": 1776080168.9283717,
+      "settings": {
+        "vote_mode": "host_only"
+      },
+      "players": {
+        "c120fed6f18a4f689ce7afde0d993a46": {
+          "id": "c120fed6f18a4f689ce7afde0d993a46",
+          "name": "Quentin",
+          "score": 1,
+          "joined_at": 1776080168.9283717,
+          "removed": true
+        },
+        "b06e98155b914639b2078665a13d50de": {
+          "id": "b06e98155b914639b2078665a13d50de",
+          "name": "Nathan",
+          "score": 24,
+          "joined_at": 1776080186.2000966,
+          "removed": true
+        },
+        "f9056b1078ae45c1bcdecb28042c2da3": {
+          "id": "f9056b1078ae45c1bcdecb28042c2da3",
+          "name": "Enola",
+          "score": 13,
+          "joined_at": 1776080193.185618,
+          "removed": true
+        }
+      },
+      "match": {
+        "status": "host_vote",
+        "round_index": 1,
+        "civilian_word": "Nathan",
+        "undercover_word": "Lara Croft",
+        "undercover_id": "f9056b1078ae45c1bcdecb28042c2da3",
+        "alive_ids": [],
+        "eliminated_ids": [],
+        "assignments": {
+          "c120fed6f18a4f689ce7afde0d993a46": {
+            "role": "civil",
+            "word": "Nathan"
+          },
+          "b06e98155b914639b2078665a13d50de": {
+            "role": "civil",
+            "word": "Nathan"
+          },
+          "f9056b1078ae45c1bcdecb28042c2da3": {
+            "role": "undercover",
+            "word": "Lara Croft"
+          }
+        },
+        "votes": {},
+        "last_eliminated_id": null,
+        "winner": null,
+        "winner_reason": "",
+        "created_at": 1776117959.4074802
+      },
+      "chat_log": []
+    },
+    "XEMTS": {
+      "code": "XEMTS",
+      "host_id": "86ff0116d9814dc2840a09de01559259",
+      "created_at": 1776118223.525118,
+      "settings": {
+        "vote_mode": "host_only"
+      },
+      "players": {
+        "74418053f11342b4a5a524f0478ae7ae": {
+          "id": "74418053f11342b4a5a524f0478ae7ae",
+          "name": "Quentin",
+          "score": 1,
+          "joined_at": 1776118223.525118,
+          "removed": true
+        },
+        "74a120341ab943de93d4b130657cda20": {
+          "id": "74a120341ab943de93d4b130657cda20",
+          "name": "Enola",
+          "score": 12,
+          "joined_at": 1776118237.854334,
+          "removed": true
+        },
+        "86ff0116d9814dc2840a09de01559259": {
+          "id": "86ff0116d9814dc2840a09de01559259",
+          "name": "Nathan",
+          "score": 13,
+          "joined_at": 1776118241.3927906,
+          "removed": true
+        }
+      },
+      "match": {
+        "status": "host_vote",
+        "round_index": 1,
+        "civilian_word": "Spore",
+        "undercover_word": "Oban Star-Racers",
+        "undercover_id": "74a120341ab943de93d4b130657cda20",
+        "alive_ids": [],
+        "eliminated_ids": [],
+        "assignments": {
+          "74418053f11342b4a5a524f0478ae7ae": {
+            "role": "civil",
+            "word": "Spore"
+          },
+          "74a120341ab943de93d4b130657cda20": {
+            "role": "undercover",
+            "word": "Oban Star-Racers"
+          },
+          "86ff0116d9814dc2840a09de01559259": {
+            "role": "civil",
+            "word": "Spore"
+          }
+        },
+        "votes": {},
+        "last_eliminated_id": null,
+        "winner": null,
+        "winner_reason": "",
+        "created_at": 1776118739.6217449
+      },
+      "chat_log": []
+    },
+    "JMXDS": {
+      "code": "JMXDS",
+      "host_id": "6c07985c831140608bc4821319b9ed3e",
+      "created_at": 1776118771.1243613,
+      "settings": {
+        "vote_mode": "host_only"
+      },
+      "players": {
+        "b5f360da52c74c4ebd5efe1466278338": {
+          "id": "b5f360da52c74c4ebd5efe1466278338",
+          "name": "Quentin",
+          "score": 0,
+          "joined_at": 1776118771.1243613,
+          "removed": true
+        },
+        "fc1e50f50c6d427ab9408b9add219bce": {
+          "id": "fc1e50f50c6d427ab9408b9add219bce",
+          "name": "Enola",
+          "score": 29,
+          "joined_at": 1776118778.1976354,
+          "removed": true
+        },
+        "6c07985c831140608bc4821319b9ed3e": {
+          "id": "6c07985c831140608bc4821319b9ed3e",
+          "name": "Nathan",
+          "score": 2,
+          "joined_at": 1776118784.1050835,
+          "removed": true
+        }
+      },
+      "match": {
+        "status": "host_vote",
+        "round_index": 1,
+        "civilian_word": "Star wars",
+        "undercover_word": "Oban Star-Racers",
+        "undercover_id": "fc1e50f50c6d427ab9408b9add219bce",
+        "alive_ids": [],
+        "eliminated_ids": [],
+        "assignments": {
+          "b5f360da52c74c4ebd5efe1466278338": {
+            "role": "civil",
+            "word": "Star wars"
+          },
+          "fc1e50f50c6d427ab9408b9add219bce": {
+            "role": "undercover",
+            "word": "Oban Star-Racers"
+          },
+          "6c07985c831140608bc4821319b9ed3e": {
+            "role": "civil",
+            "word": "Star wars"
+          }
+        },
+        "votes": {},
+        "last_eliminated_id": null,
+        "winner": null,
+        "winner_reason": "",
+        "created_at": 1776119180.4173074
+      },
+      "chat_log": []
+    }
+  }
+}
