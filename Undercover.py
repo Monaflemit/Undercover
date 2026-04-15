@@ -218,6 +218,12 @@ def current_vote_status(room: dict[str, Any]) -> str:
     return "vote" if vote_mode == "all_players" else "host_vote"
 
 
+def next_round_index(room: dict[str, Any]) -> int:
+    current = room.get("round_counter", 0) + 1
+    room["round_counter"] = current
+    return current
+
+
 def initialize_match(room: dict[str, Any], game_data: dict[str, Any]) -> None:
     active_players = [player_id for player_id, player in room["players"].items() if not player.get("removed")]
     if len(active_players) < 3:
@@ -229,7 +235,7 @@ def initialize_match(room: dict[str, Any], game_data: dict[str, Any]) -> None:
 
     room["match"] = {
         "status": current_vote_status(room),
-        "round_index": 1,
+        "round_index": next_round_index(room),
         "civilian_word": civilian_word,
         "undercover_word": undercover_word,
         "undercover_id": undercover_id,
@@ -307,7 +313,7 @@ def resolve_vote(room: dict[str, Any]) -> None:
 def reset_for_next_vote_round(room: dict[str, Any]) -> None:
     match = room["match"]
     match["status"] = current_vote_status(room)
-    match["round_index"] += 1
+    match["round_index"] = next_round_index(room)
     match["votes"] = {}
     match["last_eliminated_id"] = None
     match["winner"] = None
@@ -323,6 +329,7 @@ def create_room(host_name: str) -> tuple[str, str]:
             "code": room_code,
             "host_id": player_id,
             "created_at": now_ts(),
+            "round_counter": 0,
             "settings": {
                 "vote_mode": "all_players",
             },
