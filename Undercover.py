@@ -19,7 +19,7 @@ import streamlit as st
 
 
 APP_DIR = Path(__file__).resolve().parent
-DATA_FILE = APP_DIR / "Paires.ods"
+DATA_FILE = APP_DIR / "Paires - cousines.ods"
 IMAGES_DIR = APP_DIR / "Images"
 DEFAULT_IMAGE = IMAGES_DIR / "0.png"
 STATE_FILE = APP_DIR / "undercover_state.json"
