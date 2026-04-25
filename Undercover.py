@@ -1,15 +1,10 @@
 #cd "C:\Users\quewa\Documents\pyzo\Undercover"
 #python -m streamlit run "Undercover.py"
+#ou
+#cd "C:\Users\quewa\Documents\pyzo\Undercover"; python -m streamlit run "Undercover.py"
 from __future__ import annotations
 
-import json
-import os
-import random
-import re
-import tempfile
-import time
-import uuid
-import zipfile
+import json, os, random, re, tempfile, time, uuid, zipfile
 from contextlib import contextmanager
 from pathlib import Path
 from typing import Any
@@ -19,7 +14,7 @@ import streamlit as st
 
 
 APP_DIR = Path(__file__).resolve().parent
-DATA_FILE = APP_DIR / "Paires.ods"
+DATA_FILE = APP_DIR / "Paires.ods"   #Paires - cousines
 IMAGES_DIR = APP_DIR / "Images"
 DEFAULT_IMAGE = IMAGES_DIR / "0.png"
 STATE_FILE = APP_DIR / "undercover_state.json"
@@ -299,13 +294,10 @@ def resolve_vote(room: dict[str, Any]) -> None:
         match["winner"] = "civils"
         match["winner_reason"] = "Le traître a été identifié."
         compute_scores(room)
-    elif len(match["alive_ids"]) <= 2:
-        match["winner"] = "undercover"
-        match["winner_reason"] = "Le traître a survécu jusqu'à la fin."
-        compute_scores(room)
     else:
-        match["winner"] = None
-        match["winner_reason"] = "Un civil a été éliminé. La discussion continue."
+        match["winner"] = "undercover"
+        match["winner_reason"] = "Un civil a été éliminé. Le traître gagne immédiatement."
+        compute_scores(room)
 
     match["status"] = "result"
 
@@ -517,13 +509,10 @@ def host_eliminate_player(room_code: str, eliminated_id: str | None) -> None:
             match["winner"] = "civils"
             match["winner_reason"] = "Le traître a été identifié."
             compute_scores(room)
-        elif len(match["alive_ids"]) <= 2:
-            match["winner"] = "undercover"
-            match["winner_reason"] = "Le traître a survécu jusqu'à la fin."
-            compute_scores(room)
         else:
-            match["winner"] = None
-            match["winner_reason"] = "Un joueur a été éliminé. La discussion continue."
+            match["winner"] = "undercover"
+            match["winner_reason"] = "Un civil a été éliminé. Le traître gagne immédiatement."
+            compute_scores(room)
 
         match["status"] = "result"
 
