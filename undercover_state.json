@@ -241,6 +241,492 @@
         "created_at": 1776119180.4173074
       },
       "chat_log": []
+    },
+    "C8PKW": {
+      "code": "C8PKW",
+      "host_id": "ca86af64d6264dda92d758c008cda872",
+      "created_at": 1778772782.547666,
+      "round_counter": 0,
+      "settings": {
+        "vote_mode": "host_only"
+      },
+      "players": {
+        "ca86af64d6264dda92d758c008cda872": {
+          "id": "ca86af64d6264dda92d758c008cda872",
+          "name": "Quentin",
+          "score": 0,
+          "joined_at": 1778772782.547666,
+          "removed": true
+        }
+      },
+      "match": null,
+      "chat_log": []
+    },
+    "E55AJ": {
+      "code": "E55AJ",
+      "host_id": "6d7a4c54e2bf4b5285badfbcc95f3e4f",
+      "created_at": 1779484883.750547,
+      "round_counter": 2,
+      "settings": {
+        "vote_mode": "host_only"
+      },
+      "players": {
+        "6d8135fdc356463db4c108f81abe16e3": {
+          "id": "6d8135fdc356463db4c108f81abe16e3",
+          "name": "Quentin",
+          "score": 0,
+          "joined_at": 1779484883.750547,
+          "removed": true
+        },
+        "08fe945351e547c286391611e7bafbb5": {
+          "id": "08fe945351e547c286391611e7bafbb5",
+          "name": "Enola",
+          "score": 0,
+          "joined_at": 1779484894.2700105,
+          "removed": true
+        },
+        "6d7a4c54e2bf4b5285badfbcc95f3e4f": {
+          "id": "6d7a4c54e2bf4b5285badfbcc95f3e4f",
+          "name": "Nathan",
+          "score": 3,
+          "joined_at": 1779484900.6845422,
+          "removed": true
+        }
+      },
+      "match": {
+        "status": "host_vote",
+        "round_index": 2,
+        "civilian_word": "La fin des Artichauts",
+        "undercover_word": "Balatro",
+        "undercover_id": "6d7a4c54e2bf4b5285badfbcc95f3e4f",
+        "alive_ids": [],
+        "eliminated_ids": [],
+        "assignments": {
+          "6d8135fdc356463db4c108f81abe16e3": {
+            "role": "civil",
+            "word": "La fin des Artichauts"
+          },
+          "08fe945351e547c286391611e7bafbb5": {
+            "role": "civil",
+            "word": "La fin des Artichauts"
+          },
+          "6d7a4c54e2bf4b5285badfbcc95f3e4f": {
+            "role": "undercover",
+            "word": "Balatro"
+          }
+        },
+        "votes": {},
+        "last_eliminated_id": null,
+        "winner": null,
+        "winner_reason": "",
+        "created_at": 1779485062.637657
+      },
+      "chat_log": []
+    },
+    "3FDMM": {
+      "code": "3FDMM",
+      "host_id": "04adc631617f484e9d084c78cf10a2cb",
+      "created_at": 1779486420.1841745,
+      "round_counter": 4,
+      "settings": {
+        "vote_mode": "host_only"
+      },
+      "players": {
+        "3485052405f6490987c56061eaff4e73": {
+          "id": "3485052405f6490987c56061eaff4e73",
+          "name": "Quentin",
+          "score": 0,
+          "joined_at": 1779486420.1841745,
+          "removed": true
+        },
+        "04adc631617f484e9d084c78cf10a2cb": {
+          "id": "04adc631617f484e9d084c78cf10a2cb",
+          "name": "Enola",
+          "score": 5,
+          "joined_at": 1779486491.7236328,
+          "removed": false
+        },
+        "34b5c1903bc2409c87b1b8723ff90ecc": {
+          "id": "34b5c1903bc2409c87b1b8723ff90ecc",
+          "name": "Nathan",
+          "score": 2,
+          "joined_at": 1779486498.9906797,
+          "removed": false
+        }
+      },
+      "match": {
+        "status": "host_vote",
+        "round_index": 4,
+        "civilian_word": "Bouquet",
+        "undercover_word": "Fleur",
+        "undercover_id": "04adc631617f484e9d084c78cf10a2cb",
+        "alive_ids": [
+          "04adc631617f484e9d084c78cf10a2cb",
+          "34b5c1903bc2409c87b1b8723ff90ecc"
+        ],
+        "eliminated_ids": [],
+        "assignments": {
+          "3485052405f6490987c56061eaff4e73": {
+            "role": "civil",
+            "word": "Bouquet"
+          },
+          "04adc631617f484e9d084c78cf10a2cb": {
+            "role": "undercover",
+            "word": "Fleur"
+          },
+          "34b5c1903bc2409c87b1b8723ff90ecc": {
+            "role": "civil",
+            "word": "Bouquet"
+          }
+        },
+        "votes": {},
+        "last_eliminated_id": null,
+        "winner": null,
+        "winner_reason": "",
+        "created_at": 1779486533.2712955
+      },
+      "chat_log": [],
+      "custom_game_data": {
+        "pairs": [
+          [
+            "Artichaut",
+            "Brocoli",
+            "Carotte",
+            "Aubergine",
+            "Oignon",
+            "Patate"
+          ],
+          [
+            "Blanche neige",
+            "Cendrillon",
+            "Aurore",
+            "Raiponce"
+          ],
+          [
+            "Oui-oui",
+            "Franklin"
+          ],
+          [
+            "Dixit",
+            "When I dream",
+            "Concept",
+            "Qui est-ce",
+            "Imagine"
+          ],
+          [
+            "Koh-Lanta",
+            "The island (jeu de société)",
+            "Galèrapagos",
+            "Les Aventures de Robinson Crusoë"
+          ],
+          [
+            "Hermione Granger",
+            "Harry Potter",
+            "Ron Weasley"
+          ],
+          [
+            "Tour Eiffel",
+            "Statue de la liberté"
+          ],
+          [
+            "William Shakespeare",
+            "Charles Dickens",
+            "Jane Austen",
+            "J. K. Rowling"
+          ],
+          [
+            "Elfe",
+            "Fée"
+          ],
+          [
+            "Vampire",
+            "Loup-garou",
+            "Sorcière"
+          ],
+          [
+            "Laura Ingalls",
+            "Marie Ingalls"
+          ],
+          [
+            "Totoro",
+            "Chat bus"
+          ],
+          [
+            "Chat-bus",
+            "Garfield",
+            "Jiji",
+            "Hello Kitty",
+            "Le chat Potté"
+          ],
+          [
+            "Anya",
+            "Télépathie"
+          ],
+          [
+            "Loid",
+            "Espion"
+          ],
+          [
+            "Elfe",
+            "Fée"
+          ],
+          [
+            "Nain",
+            "Minimoys",
+            "Lutin",
+            "Schtroumpfs"
+          ],
+          [
+            "Cinéma",
+            "Film"
+          ],
+          [
+            "Destin",
+            "Futur"
+          ],
+          [
+            "Lune",
+            "Nuit"
+          ],
+          [
+            "Avion",
+            "Voyage"
+          ],
+          [
+            "Manga",
+            "BD",
+            "Lecture",
+            "Roman"
+          ],
+          [
+            "Musée",
+            "Picasso"
+          ],
+          [
+            "Joconde",
+            "Léonard de Vinci"
+          ],
+          [
+            "Joconde",
+            "Portrait"
+          ],
+          [
+            "Naruto",
+            "Sakura",
+            "Kakashi"
+          ],
+          [
+            "Voiture",
+            "Train",
+            "Bus"
+          ],
+          [
+            "Dumbledore",
+            "Merlin",
+            "Père Noël"
+          ],
+          [
+            "Journal télévisé",
+            "Documentaire"
+          ],
+          [
+            "Pomme",
+            "Poire"
+          ],
+          [
+            "Voiture",
+            "Moto"
+          ],
+          [
+            "Fleur",
+            "Bouquet"
+          ],
+          [
+            "Plage",
+            "Merlin"
+          ],
+          [
+            "Montagne",
+            "Colline"
+          ],
+          [
+            "Musique",
+            "Chanson"
+          ],
+          [
+            "Voyage",
+            "Aventure"
+          ],
+          [
+            "Pastèque",
+            "Melon"
+          ],
+          [
+            "Rouge",
+            "Rose"
+          ],
+          [
+            "Stylo",
+            "Crayon"
+          ],
+          [
+            "Piano",
+            "Guitare"
+          ],
+          [
+            "Chartres",
+            "Orléans"
+          ],
+          [
+            "Paris",
+            "New York"
+          ],
+          [
+            "Rome",
+            "Athènes"
+          ],
+          [
+            "Maison",
+            "Appartement"
+          ],
+          [
+            "Chocolat",
+            "Vanille"
+          ],
+          [
+            "Pizza",
+            "Pasta"
+          ],
+          [
+            "Football",
+            "Basket ball"
+          ],
+          [
+            "Golf",
+            "Pétanque",
+            "Bowling",
+            "Fléchettes",
+            "Billard"
+          ],
+          [
+            "Tennis",
+            "Tennis de table"
+          ],
+          [
+            "Super-héros",
+            "Villain"
+          ],
+          [
+            "Chaussure",
+            "Bottes"
+          ],
+          [
+            "Médecin",
+            "Pompier",
+            "Policier"
+          ],
+          [
+            "Fraise",
+            "Framboise"
+          ],
+          [
+            "Théâtre",
+            "Cinéma"
+          ],
+          [
+            "Oiseau",
+            "Papillon"
+          ],
+          [
+            "Shampoing",
+            "Gel douche"
+          ],
+          [
+            "Netflix",
+            "Disney +"
+          ],
+          [
+            "Disney",
+            "Pixar"
+          ],
+          [
+            "Star Wars",
+            "Espace"
+          ],
+          [
+            "Futuroscope",
+            "Disneyland"
+          ],
+          [
+            "Japon",
+            "Chine"
+          ],
+          [
+            "Latin",
+            "Grec ancien"
+          ],
+          [
+            "Barque",
+            "Bateau"
+          ],
+          [
+            "Pied",
+            "Main"
+          ],
+          [
+            "Ingénieur",
+            "Architecte"
+          ],
+          [
+            "Orthophoniste",
+            "Linguiste",
+            "Professeur",
+            "Neuropsychologue"
+          ],
+          [
+            "SMS",
+            "Mail"
+          ],
+          [
+            "Death Note",
+            "Cahier"
+          ],
+          [
+            "Apothicaire",
+            "Remède"
+          ],
+          [
+            "Frère",
+            "Soeur"
+          ],
+          [
+            "Parents",
+            "Grands-parents",
+            "Tante"
+          ],
+          [
+            "Couronne",
+            "Chapeau"
+          ]
+        ],
+        "titles": {
+          "Marie Ingalls": "La petite maison dans la prairie",
+          "Laura Ingalls": "La petite maison dans la prairie",
+          "Totoro": "Studio Ghibli",
+          "Chat bus": "Studio Ghibli",
+          "Anya": "Spy of Family",
+          "Loid": "Spy of Family",
+          "Aubergine": "La fin des artichauts : donner 2 cartes à son voisin",
+          "Brocoli": "La fin des artichauts : écarter un artichaut au compost si 3 artichauts en main",
+          "Artichaut": "La fin des artichauts : carte à écarter au compost",
+          "Carotte": "La fin des artichauts : écarter 2 carottes dans le compost",
+          "Oignon": "La fin des artichauts : écarter un artichaut dans le compost, donner l’oignon à un adversaire",
+          "Patate": "La fin des artichauts : retourner la première carte du deck si c’est un artichaut, écartez-le dans le compost",
+          "Sakura": "Naruto",
+          "Kakashi": "Naruto"
+        },
+        "images": {}
+      }
     }
   }
 }
