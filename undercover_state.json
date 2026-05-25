@@ -344,14 +344,14 @@
           "name": "Enola",
           "score": 5,
           "joined_at": 1779486491.7236328,
-          "removed": false
+          "removed": true
         },
         "34b5c1903bc2409c87b1b8723ff90ecc": {
           "id": "34b5c1903bc2409c87b1b8723ff90ecc",
           "name": "Nathan",
           "score": 2,
           "joined_at": 1779486498.9906797,
-          "removed": false
+          "removed": true
         }
       },
       "match": {
@@ -360,10 +360,7 @@
         "civilian_word": "Bouquet",
         "undercover_word": "Fleur",
         "undercover_id": "04adc631617f484e9d084c78cf10a2cb",
-        "alive_ids": [
-          "04adc631617f484e9d084c78cf10a2cb",
-          "34b5c1903bc2409c87b1b8723ff90ecc"
-        ],
+        "alive_ids": [],
         "eliminated_ids": [],
         "assignments": {
           "3485052405f6490987c56061eaff4e73": {
@@ -727,6 +724,91 @@
         },
         "images": {}
       }
+    },
+    "VPK8J": {
+      "code": "VPK8J",
+      "host_id": "3bec41c7c0b2482e92233c94fabcfbab",
+      "created_at": 1779713945.3303916,
+      "round_counter": 0,
+      "settings": {
+        "vote_mode": "all_players"
+      },
+      "players": {
+        "3bec41c7c0b2482e92233c94fabcfbab": {
+          "id": "3bec41c7c0b2482e92233c94fabcfbab",
+          "name": "Quetin",
+          "score": 0,
+          "joined_at": 1779713945.3303916,
+          "removed": true
+        }
+      },
+      "match": null,
+      "chat_log": []
+    },
+    "9ZZ52": {
+      "code": "9ZZ52",
+      "host_id": "f227e3c3c93f48df84176ee5f3664870",
+      "created_at": 1779713967.6269565,
+      "round_counter": 4,
+      "settings": {
+        "vote_mode": "host_only"
+      },
+      "players": {
+        "f227e3c3c93f48df84176ee5f3664870": {
+          "id": "f227e3c3c93f48df84176ee5f3664870",
+          "name": "Nathan",
+          "score": 0,
+          "joined_at": 1779713967.6269565,
+          "removed": false
+        },
+        "2659b7ee0cf14571a25f077111d7af25": {
+          "id": "2659b7ee0cf14571a25f077111d7af25",
+          "name": "E",
+          "score": 5,
+          "joined_at": 1779715742.144389,
+          "removed": false
+        },
+        "d2b95947a1634abc88858c1676c6ae45": {
+          "id": "d2b95947a1634abc88858c1676c6ae45",
+          "name": "A",
+          "score": 2,
+          "joined_at": 1779715747.7893748,
+          "removed": false
+        }
+      },
+      "match": {
+        "status": "host_vote",
+        "round_index": 4,
+        "civilian_word": "Indiana Jones",
+        "undercover_word": "Nathan",
+        "undercover_id": "2659b7ee0cf14571a25f077111d7af25",
+        "alive_ids": [
+          "f227e3c3c93f48df84176ee5f3664870",
+          "2659b7ee0cf14571a25f077111d7af25",
+          "d2b95947a1634abc88858c1676c6ae45"
+        ],
+        "eliminated_ids": [],
+        "assignments": {
+          "f227e3c3c93f48df84176ee5f3664870": {
+            "role": "civil",
+            "word": "Indiana Jones"
+          },
+          "2659b7ee0cf14571a25f077111d7af25": {
+            "role": "undercover",
+            "word": "Nathan"
+          },
+          "d2b95947a1634abc88858c1676c6ae45": {
+            "role": "civil",
+            "word": "Indiana Jones"
+          }
+        },
+        "votes": {},
+        "last_eliminated_id": null,
+        "winner": null,
+        "winner_reason": "",
+        "created_at": 1779716048.0864248
+      },
+      "chat_log": []
     }
   }
 }

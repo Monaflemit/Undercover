@@ -805,6 +805,9 @@ def render_live_sidebar() -> None:
     st.header("Navigation")
 
 
+    # Ajoute un indicateur visuel pour savoir que ça tourne
+    #st.caption(f"🔄 Dernière mise à jour : {time.strftime('%H:%M:%S')}")
+
 
     if st.button("Rafraîchir"):
         st.rerun()
@@ -821,12 +824,12 @@ def render_live_sidebar() -> None:
         st.caption("Aucune salle rejointe.")
 
 
-
+@st.fragment(run_every="2s")
 def get_room_game_data(room: dict[str, Any], default_game_data: dict[str, Any]) -> dict[str, Any]:
     """Retourne les données du jeu : personnalisées si disponibles, sinon par défaut"""
     return room.get("custom_game_data", default_game_data)
 
-
+@st.fragment(run_every="2s")
 def render_live_main(game_data: dict[str, Any]) -> None:
     room, player, room_code, player_id = current_room_and_player()
 
