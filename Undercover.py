@@ -9,10 +9,11 @@ from contextlib import contextmanager
 from pathlib import Path
 from typing import Any
 from xml.etree import ElementTree as ET
+from tkinter import Tk, filedialog
 
 import streamlit as st
 
-
+#Recherche de fichier
 APP_DIR = Path(__file__).resolve().parent
 DATA_FILE = APP_DIR / "Paires.ods"   #Paires - cousines
 IMAGES_DIR = APP_DIR / "Images"
@@ -26,6 +27,27 @@ ODS_NS = {
     "text": "urn:oasis:names:tc:opendocument:xmlns:text:1.0",
 }
 
+def select_file():
+    # Masquer la fenêtre principale Tkinter
+    root = Tk()
+    root.withdraw()
+
+    # Ouvrir l'explorateur pour sélectionner un fichier ODS
+    fichier_ods = filedialog.askopenfilename(
+        title="Sélectionner un fichier ODS",
+        filetypes=[
+            ("Fichiers ODS", "*.ods"),
+            ("Tous les fichiers", "*.*")
+        ]
+    )
+
+    # Vérifier si un fichier a été sélectionné
+    if fichier_ods:
+        print("Chemin du fichier sélectionné :")
+        print(fichier_ods)
+        DATA_FILE = fichier_ods
+    else:
+        print("Aucun fichier sélectionné.")
 
 def live_fragment(run_every: str | int | float | None = None):
     fragment_api = getattr(st, "fragment", None) or getattr(st, "experimental_fragment", None)
@@ -250,7 +272,7 @@ def initialize_match(room: dict[str, Any], game_data: dict[str, Any]) -> None:
         "created_at": now_ts(),
     }
 
-
+#Ce fonction permet calculer les points civils et traitres : si civils gagne alors ils gagnent un points chacun sino le traitre gagne 3
 def compute_scores(room: dict[str, Any]) -> None:
     match = room["match"]
     winner = match["winner"]
@@ -259,9 +281,9 @@ def compute_scores(room: dict[str, Any]) -> None:
             if assignment["role"] == "civil":
                 room["players"][player_id]["score"] += 1
     elif winner == "undercover":
-        civilians_count = sum(1 for assignment in match["assignments"].values() if assignment["role"] == "civil")
-        points = max(1, 5 - civilians_count)
-        room["players"][match["undercover_id"]]["score"] += points
+        #civilians_count = sum(1 for assignment in match["assignments"].values() if assignment["role"] == "civil")
+        #points = max(1, 5 - civilians_count)
+        room["players"][match["undercover_id"]]["score"] += 3
 
 
 def resolve_vote(room: dict[str, Any]) -> None:
@@ -786,6 +808,9 @@ def main() -> None:
     st.set_page_config(page_title="Undercover", page_icon="🕵️", layout="wide")
     st.title("Undercover multijoueur")
     st.caption("Application Streamlit pour créer une salle, distribuer les rôles et gérer les votes.")
+    Select_Button = st.button("Choisir le fichier.ods", type="primary")
+    if Select_Button:
+        select_file()
 
     try:
         game_data = load_game_data()

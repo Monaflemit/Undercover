@@ -241,6 +241,89 @@
         "created_at": 1776119180.4173074
       },
       "chat_log": []
+    },
+    "7NLQL": {
+      "code": "7NLQL",
+      "host_id": "af5dc96aa46d40e7b8c2a0c2de9d0a56",
+      "created_at": 1777230022.0565326,
+      "round_counter": 6,
+      "settings": {
+        "vote_mode": "host_only"
+      },
+      "players": {
+        "bf6096676a864c5a933220386e3b1761": {
+          "id": "bf6096676a864c5a933220386e3b1761",
+          "name": "n",
+          "score": 0,
+          "joined_at": 1777230022.0565367,
+          "removed": true
+        },
+        "d749e36420c04d708c2a6996322957a6": {
+          "id": "d749e36420c04d708c2a6996322957a6",
+          "name": "e",
+          "score": 6,
+          "joined_at": 1777230028.919367,
+          "removed": true
+        },
+        "af5dc96aa46d40e7b8c2a0c2de9d0a56": {
+          "id": "af5dc96aa46d40e7b8c2a0c2de9d0a56",
+          "name": "q",
+          "score": 9,
+          "joined_at": 1777230032.692998,
+          "removed": true
+        }
+      },
+      "match": {
+        "status": "result",
+        "round_index": 6,
+        "civilian_word": "Bunnie",
+        "undercover_word": "Dotty",
+        "undercover_id": "d749e36420c04d708c2a6996322957a6",
+        "alive_ids": [],
+        "eliminated_ids": [
+          "af5dc96aa46d40e7b8c2a0c2de9d0a56"
+        ],
+        "assignments": {
+          "bf6096676a864c5a933220386e3b1761": {
+            "role": "civil",
+            "word": "Bunnie"
+          },
+          "d749e36420c04d708c2a6996322957a6": {
+            "role": "undercover",
+            "word": "Dotty"
+          },
+          "af5dc96aa46d40e7b8c2a0c2de9d0a56": {
+            "role": "civil",
+            "word": "Bunnie"
+          }
+        },
+        "votes": {},
+        "last_eliminated_id": "af5dc96aa46d40e7b8c2a0c2de9d0a56",
+        "winner": "undercover",
+        "winner_reason": "Un civil a été éliminé. Le traître gagne immédiatement.",
+        "created_at": 1777230109.0305989
+      },
+      "chat_log": []
+    },
+    "DKUMD": {
+      "code": "DKUMD",
+      "host_id": "f910f99ed84746d9b383d24939644d4e",
+      "created_at": 1785254573.452066,
+      "round_counter": 0,
+      "settings": {
+        "vote_mode": "all_players"
+      },
+      "players": {
+        "f910f99ed84746d9b383d24939644d4e": {
+          "id": "f910f99ed84746d9b383d24939644d4e",
+          "name": "n",
+          "score": 0,
+          "joined_at": 1785254573.4520688,
+          "removed": false
+        }
+      },
+      "match": null,
+      "chat_log": []
     }
   }
 }
