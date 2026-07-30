@@ -13,7 +13,16 @@ from tkinter import Tk, filedialog
 
 import streamlit as st
 
+
 #Recherche de fichier
+
+
+
+import openpyxl  # Pour lire les fichiers Excel (.xlsx)
+from io import BytesIO  
+
+
+
 APP_DIR = Path(__file__).resolve().parent
 DATA_FILE = APP_DIR / "Paires.ods"   #Paires - cousines
 IMAGES_DIR = APP_DIR / "Images"
@@ -172,8 +181,132 @@ def iter_sheet_rows(sheet: ET.Element) -> list[list[str]]:
     return rows
 
 
+def read_ods_file(file_content: bytes) -> dict[str, Any]:
+    """Lit un fichier ODS et retourne les données"""
+    with zipfile.ZipFile(BytesIO(file_content)) as archive:
+        root = ET.fromstring(archive.read("content.xml"))
+
+    pairs: list[list[str]] = []
+    titles: dict[str, str] = {}
+
+    for sheet in root.findall(".//table:table", ODS_NS):
+        name = sheet.attrib.get("{urn:oasis:names:tc:opendocument:xmlns:table:1.0}name", "")
+        rows = iter_sheet_rows(sheet)
+
+        if name.lower() == "paires":
+            for row in rows:
+                items = [item.strip() for item in row if item.strip()]
+                if len(items) >= 2 and not all(item.isdigit() for item in items):
+                    pairs.append(items)
+
+        if name.lower() == "titres":
+            for row in rows:
+                items = [item.strip() for item in row if item.strip()]
+                if len(items) < 2:
+                    continue
+                if any(item.lower() == "personnage" for item in items) and any(item.lower() == "titre" for item in items):
+                    continue
+                character, title = items[-1], items[-2]
+                if title.lower() == "titre" or character.lower() == "personnage":
+                    continue
+                titles[character] = title
+
+    return {"pairs": pairs, "titles": titles}
+
+
+def read_excel_file(file_content: bytes) -> dict[str, Any]:
+    """Lit un fichier Excel (.xlsx) et retourne les données"""
+    wb = openpyxl.load_workbook(BytesIO(file_content), data_only=True)
+    
+    pairs: list[list[str]] = []
+    titles: dict[str, str] = {}
+
+    # Lire la feuille "Paires"
+    if "Paires" in wb.sheetnames:
+        ws = wb["Paires"]
+        for row in ws.iter_rows(values_only=True):
+            items = [str(item).strip() for item in row if item is not None and str(item).strip()]
+            if len(items) >= 2 and not all(item.isdigit() for item in items):
+                pairs.append(items)
+
+    # Lire la feuille "Titres"
+    if "Titres" in wb.sheetnames:
+        ws = wb["Titres"]
+        for row in ws.iter_rows(values_only=True):
+            items = [str(item).strip() for item in row if item is not None and str(item).strip()]
+            if len(items) < 2:
+                continue
+            if any(str(item).lower() == "personnage" for item in items) and any(str(item).lower() == "titre" for item in items):
+                continue
+            character, title = items[-1], items[-2]
+            if title.lower() == "titre" or character.lower() == "personnage":
+                continue
+            titles[character] = title
+
+    return {"pairs": pairs, "titles": titles}
+
+
+def read_csv_file(file_content: bytes, delimiter: str = ";") -> dict[str, Any]:
+    """Lit un fichier CSV et retourne les données"""
+    import csv
+    from io import StringIO
+    
+    content = file_content.decode('utf-8')
+    pairs: list[list[str]] = []
+    titles: dict[str, str] = {}
+    
+    # Essayer de détecter automatiquement le délimiteur
+    try:
+        sample = content[:1024]
+        sniffer = csv.Sniffer()
+        delimiter = sniffer.sniff(sample).delimiter
+    except:
+        pass  # Garder le délimiteur par défaut
+    
+    reader = csv.reader(StringIO(content), delimiter=delimiter)
+    rows = list(reader)
+    
+    # Simple heuristique : considérer que tout est dans la même feuille
+    # Les lignes avec 2+ éléments sont des paires
+    for row in rows:
+        items = [item.strip() for item in row if item.strip()]
+        if len(items) >= 2:
+            # Si c'est une ligne titre/personnage, l'ajouter aux titres
+            if len(items) == 2 and items[0].lower() != "titre" and items[1].lower() != "personnage":
+                titles[items[1]] = items[0]
+            # Sinon c'est une paire
+            elif not all(item.isdigit() for item in items):
+                pairs.append(items)
+    
+    return {"pairs": pairs, "titles": titles}
+
+
+def parse_uploaded_file(uploaded_file) -> dict[str, Any]:
+    """Parse le fichier uploadé selon son extension"""
+    file_content = uploaded_file.read()
+    file_name = uploaded_file.name.lower()
+    
+    if file_name.endswith('.ods'):
+        data = read_ods_file(file_content)
+    elif file_name.endswith(('.xlsx', '.xls')):
+        data = read_excel_file(file_content)
+    elif file_name.endswith('.csv'):
+        data = read_csv_file(file_content)
+    else:
+        raise ValueError("Format de fichier non supporté. Utilisez .ods, .xlsx, .xls ou .csv")
+    
+    # Ajouter les images (vide pour un fichier uploadé)
+    data["images"] = {}
+    
+    if not data["pairs"]:
+        raise ValueError("Aucune paire exploitable n'a été trouvée dans le fichier.")
+    
+    return data
+
+
 @st.cache_data(show_spinner=False)
 def load_game_data() -> dict[str, Any]:
+    """Charge les données par défaut depuis le fichier local"""
     if not DATA_FILE.exists():
         raise FileNotFoundError(f"Fichier introuvable: {DATA_FILE}")
 
@@ -334,12 +467,12 @@ def reset_for_next_vote_round(room: dict[str, Any]) -> None:
     match["winner_reason"] = ""
 
 
-def create_room(host_name: str) -> tuple[str, str]:
+def create_room(host_name: str, custom_game_data: dict[str, Any] | None = None) -> tuple[str, str]:
     player_id = new_id()
 
     def mutator(data: dict[str, Any]) -> tuple[str, str]:
         room_code = generate_room_code(data)
-        data["rooms"][room_code] = {
+        room_data = {
             "code": room_code,
             "host_id": player_id,
             "created_at": now_ts(),
@@ -359,6 +492,12 @@ def create_room(host_name: str) -> tuple[str, str]:
             "match": None,
             "chat_log": [],
         }
+        
+        # Stocker les données personnalisées si fournies
+        if custom_game_data:
+            room_data["custom_game_data"] = custom_game_data
+        
+        data["rooms"][room_code] = room_data
         return room_code, player_id
 
     return update_state(mutator)
@@ -565,6 +704,11 @@ def render_lobby(room: dict[str, Any], player_id: str, game_data: dict[str, Any]
     active_players = [player for player in room["players"].values() if not player.get("removed")]
     st.subheader("Lobby")
     st.write(f"Partie hébergée par **{room['players'][host_id]['name']}**")
+    
+    # Afficher si un fichier personnalisé est utilisé
+    if "custom_game_data" in room:
+        st.info(f"🎲 Fichier personnalisé chargé : {len(room['custom_game_data']['pairs'])} paires disponibles")
+    
     st.write("Joueurs connectés :")
     for player in sorted(active_players, key=lambda item: item["joined_at"]):
         suffix = " (hôte)" if player["id"] == host_id else ""
@@ -588,6 +732,7 @@ def render_lobby(room: dict[str, Any], player_id: str, game_data: dict[str, Any]
             update_vote_mode(room["code"], selected_mode)
             st.rerun()
         if st.button("Lancer la partie", type="primary", disabled=len(active_players) < 3):
+            # Utiliser les bonnes données de jeu
             start_match(room["code"], game_data)
             st.rerun()
 
@@ -685,6 +830,12 @@ def render_scoreboard(room: dict[str, Any]) -> None:
 def render_live_sidebar() -> None:
     room, player, room_code, player_id = current_room_and_player()
     st.header("Navigation")
+
+
+    # Ajoute un indicateur visuel pour savoir que ça tourne
+    #st.caption(f"🔄 Dernière mise à jour : {time.strftime('%H:%M:%S')}")
+
+
     if st.button("Rafraîchir"):
         st.rerun()
     if room and player:
@@ -699,8 +850,12 @@ def render_live_sidebar() -> None:
     else:
         st.caption("Aucune salle rejointe.")
 
+def get_room_game_data(room: dict[str, Any], default_game_data: dict[str, Any]) -> dict[str, Any]:
+    """Retourne les données du jeu : personnalisées si disponibles, sinon par défaut"""
+    return room.get("custom_game_data", default_game_data)
 
-@live_fragment(run_every=LIVE_REFRESH_INTERVAL)
+
+@st.fragment(run_every="2s")
 def render_live_main(game_data: dict[str, Any]) -> None:
     room, player, room_code, player_id = current_room_and_player()
 
@@ -712,15 +867,70 @@ def render_live_main(game_data: dict[str, Any]) -> None:
         with create_col:
             with st.form("create-room"):
                 host_name = st.text_input("Votre nom", key="host-name")
+                
+                # Upload de fichier optionnel
+                st.markdown("**Fichier personnalisé (optionnel)**")
+                uploaded_file = st.file_uploader(
+                    "Charger votre fichier de paires",
+                    type=["ods", "xlsx", "xls", "csv"],
+                    help="Formats acceptés : ODS, Excel (.xlsx, .xls) ou CSV",
+                    key="custom-file"
+                )
+                
                 create_submitted = st.form_submit_button("Créer une partie", type="primary")
                 if create_submitted:
                     cleaned = host_name.strip()
                     if not cleaned:
                         st.error("Entrez un nom pour créer la partie.")
                     else:
-                        new_room_code, new_player_id = create_room(cleaned)
-                        set_query_player(new_room_code, new_player_id)
-                        st.rerun()
+                        try:
+                            custom_data = None
+                            if uploaded_file is not None:
+                                # Parser le fichier uploadé
+                                custom_data = parse_uploaded_file(uploaded_file)
+                                st.success(f"✅ Fichier chargé : {len(custom_data['pairs'])} paires trouvées")
+                            
+                            new_room_code, new_player_id = create_room(cleaned, custom_data)
+                            set_query_player(new_room_code, new_player_id)
+                            st.rerun()
+                        except Exception as e:
+                            st.error(f"Erreur lors du chargement du fichier : {e}")
+
+            # --- NOTICE  ---
+            # Ajout de la notice en menu déroulant
+            with st.expander("📖 Aide : Format du fichier excel"):
+                st.markdown("""
+                ### 🕵️ Guide de la structure du fichier excel 
+
+                ---
+
+                ###  Fichier de données 
+                Ce fichier doit obligatoirement contenir deux feuilles (onglets):
+
+                #### **A. Feuille : `Paires`**
+                C'est ici que sont définis les mots secrets.
+                * **Structure** : Chaque ligne représente une association de mots.
+                * **Règle** : Il doit y avoir au moins **2 mots** par ligne.
+                * **Exemple** :
+                    | Colonne A | Colonne B | Colonne C |
+                    | :--- | :--- | :--- |
+                    | Harry | Hermione | Ron |
+                * *Le script choisira au hasard deux mots différents sur la ligne pour désigner le mot du Civil et celui de l'Undercover.*
+
+                #### **B. Feuille : `Titres`**
+                Permet d'afficher une description sous le nom du personnage.
+                * **Structure** : Le script lit les deux colonnes remplies.
+                * **Ordre** : La première colonne contient le **Titre** et la deuxième colonne contient le **Nom du personnage**.
+                * **Exemple** :
+                    | Colonne A (Titre) | Colonne B (Personnage) |
+                    | :--- | :--- |
+                    | Harry Potter à l'école des sorciers | Ron |
+
+                ---
+
+        
+                """)
+            # ------------------------------
 
         with join_col:
             join_name = st.text_input("Votre nom pour rejoindre", key="join-name")
@@ -747,7 +957,10 @@ def render_live_main(game_data: dict[str, Any]) -> None:
                 st.rerun()
         return
 
-    match = room.get("match")
+    # Récupérer les bonnes données de jeu pour cette room
+    room_game_data = get_room_game_data(room, game_data)
+    
+    match = room["match"]
     host_id = room["host_id"]
     is_host = player["id"] == host_id
 
@@ -755,9 +968,9 @@ def render_live_main(game_data: dict[str, Any]) -> None:
 
     with left_col:
         if match is None:
-            render_lobby(room, player["id"], game_data)
+            render_lobby(room, player["id"], room_game_data)
         else:
-            render_player_card(room, player["id"], game_data)
+            render_player_card(room, player["id"], room_game_data)
 
             if match["status"] == "discussion":
                 render_discussion(room)
@@ -800,7 +1013,7 @@ def render_live_main(game_data: dict[str, Any]) -> None:
             elif match["status"] == "result":
                 label = "Relancer immédiatement" if match["winner"] else "Manche suivante"
                 if st.button(label, type="primary"):
-                    continue_after_result(room["code"], game_data)
+                    continue_after_result(room["code"], room_game_data)
                     st.rerun()
 
 

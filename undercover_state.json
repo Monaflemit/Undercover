@@ -242,87 +242,69 @@
       },
       "chat_log": []
     },
-    "7NLQL": {
-      "code": "7NLQL",
-      "host_id": "af5dc96aa46d40e7b8c2a0c2de9d0a56",
-      "created_at": 1777230022.0565326,
-      "round_counter": 6,
+    "R5CDD": {
+      "code": "R5CDD",
+      "host_id": "3bacaceee38e4a4c8b318de0e170b57c",
+      "created_at": 1785435673.246159,
+      "round_counter": 14,
       "settings": {
         "vote_mode": "host_only"
       },
       "players": {
-        "bf6096676a864c5a933220386e3b1761": {
-          "id": "bf6096676a864c5a933220386e3b1761",
+        "3bacaceee38e4a4c8b318de0e170b57c": {
+          "id": "3bacaceee38e4a4c8b318de0e170b57c",
           "name": "n",
-          "score": 0,
-          "joined_at": 1777230022.0565367,
-          "removed": true
+          "score": 8,
+          "joined_at": 1785435673.2461617,
+          "removed": false
         },
-        "d749e36420c04d708c2a6996322957a6": {
-          "id": "d749e36420c04d708c2a6996322957a6",
-          "name": "e",
-          "score": 6,
-          "joined_at": 1777230028.919367,
-          "removed": true
-        },
-        "af5dc96aa46d40e7b8c2a0c2de9d0a56": {
-          "id": "af5dc96aa46d40e7b8c2a0c2de9d0a56",
+        "f32616938546417685aa1eb57fe2edcd": {
+          "id": "f32616938546417685aa1eb57fe2edcd",
           "name": "q",
-          "score": 9,
-          "joined_at": 1777230032.692998,
-          "removed": true
-        }
-      },
-      "match": {
-        "status": "result",
-        "round_index": 6,
-        "civilian_word": "Bunnie",
-        "undercover_word": "Dotty",
-        "undercover_id": "d749e36420c04d708c2a6996322957a6",
-        "alive_ids": [],
-        "eliminated_ids": [
-          "af5dc96aa46d40e7b8c2a0c2de9d0a56"
-        ],
-        "assignments": {
-          "bf6096676a864c5a933220386e3b1761": {
-            "role": "civil",
-            "word": "Bunnie"
-          },
-          "d749e36420c04d708c2a6996322957a6": {
-            "role": "undercover",
-            "word": "Dotty"
-          },
-          "af5dc96aa46d40e7b8c2a0c2de9d0a56": {
-            "role": "civil",
-            "word": "Bunnie"
-          }
+          "score": 16,
+          "joined_at": 1785435701.5254242,
+          "removed": false
         },
-        "votes": {},
-        "last_eliminated_id": "af5dc96aa46d40e7b8c2a0c2de9d0a56",
-        "winner": "undercover",
-        "winner_reason": "Un civil a été éliminé. Le traître gagne immédiatement.",
-        "created_at": 1777230109.0305989
-      },
-      "chat_log": []
-    },
-    "DKUMD": {
-      "code": "DKUMD",
-      "host_id": "f910f99ed84746d9b383d24939644d4e",
-      "created_at": 1785254573.452066,
-      "round_counter": 0,
-      "settings": {
-        "vote_mode": "all_players"
-      },
-      "players": {
-        "f910f99ed84746d9b383d24939644d4e": {
-          "id": "f910f99ed84746d9b383d24939644d4e",
-          "name": "n",
-          "score": 0,
-          "joined_at": 1785254573.4520688,
+        "c31295ce36264eea8781150ef2421388": {
+          "id": "c31295ce36264eea8781150ef2421388",
+          "name": "e",
+          "score": 10,
+          "joined_at": 1785435719.4200919,
           "removed": false
         }
       },
-      "match": null,
+      "match": {
+        "status": "host_vote",
+        "round_index": 14,
+        "civilian_word": "The island (jeu de société)",
+        "undercover_word": "Les sims 2 naufragés",
+        "undercover_id": "3bacaceee38e4a4c8b318de0e170b57c",
+        "alive_ids": [
+          "3bacaceee38e4a4c8b318de0e170b57c",
+          "f32616938546417685aa1eb57fe2edcd",
+          "c31295ce36264eea8781150ef2421388"
+        ],
+        "eliminated_ids": [],
+        "assignments": {
+          "3bacaceee38e4a4c8b318de0e170b57c": {
+            "role": "undercover",
+            "word": "Les sims 2 naufragés"
+          },
+          "f32616938546417685aa1eb57fe2edcd": {
+            "role": "civil",
+            "word": "The island (jeu de société)"
+          },
+          "c31295ce36264eea8781150ef2421388": {
+            "role": "civil",
+            "word": "The island (jeu de société)"
+          }
+        },
+        "votes": {},
+        "last_eliminated_id": null,
+        "winner": null,
+        "winner_reason": "",
+        "created_at": 1785443382.4683557
+      },
       "chat_log": []
     }
   }
