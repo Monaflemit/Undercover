@@ -386,9 +386,9 @@ def compute_scores(room: dict[str, Any]) -> None:
             if assignment["role"] == "civil":
                 room["players"][player_id]["score"] += 1
     elif winner == "undercover":
-        civilians_count = sum(1 for assignment in match["assignments"].values() if assignment["role"] == "civil")
-        points = max(1, 5 - civilians_count)
-        room["players"][match["undercover_id"]]["score"] += points
+        #civilians_count = sum(1 for assignment in match["assignments"].values() if assignment["role"] == "civil")
+        #points = max(1, 5 - civilians_count)
+        room["players"][match["undercover_id"]]["score"] += 2
 
 
 def resolve_vote(room: dict[str, Any]) -> None:
@@ -824,7 +824,7 @@ def render_live_sidebar() -> None:
         st.caption("Aucune salle rejointe.")
 
 
-@st.fragment(run_every="2s")
+#@st.fragment(run_every="2s")
 def get_room_game_data(room: dict[str, Any], default_game_data: dict[str, Any]) -> dict[str, Any]:
     """Retourne les données du jeu : personnalisées si disponibles, sinon par défaut"""
     return room.get("custom_game_data", default_game_data)
