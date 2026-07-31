@@ -998,9 +998,7 @@ def main() -> None:
     st.set_page_config(page_title="Undercover", page_icon="🕵️", layout="wide")
     st.title("Undercover multijoueur")
     st.caption("Application Streamlit pour créer une salle, distribuer les rôles et gérer les votes.")
-    Select_Button = st.button("Choisir le fichier.ods", type="primary")
-    if Select_Button:
-        select_file()
+    
 
     try:
         game_data = load_game_data()
