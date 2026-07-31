@@ -34,27 +34,6 @@ ODS_NS = {
     "text": "urn:oasis:names:tc:opendocument:xmlns:text:1.0",
 }
 
-def select_file():
-    # Masquer la fenêtre principale Tkinter
-    root = Tk()
-    root.withdraw()
-
-    # Ouvrir l'explorateur pour sélectionner un fichier ODS
-    fichier_ods = filedialog.askopenfilename(
-        title="Sélectionner un fichier ODS",
-        filetypes=[
-            ("Fichiers ODS", "*.ods"),
-            ("Tous les fichiers", "*.*")
-        ]
-    )
-
-    # Vérifier si un fichier a été sélectionné
-    if fichier_ods:
-        print("Chemin du fichier sélectionné :")
-        print(fichier_ods)
-        DATA_FILE = fichier_ods
-    else:
-        print("Aucun fichier sélectionné.")
 
 def live_fragment(run_every: str | int | float | None = None):
     fragment_api = getattr(st, "fragment", None) or getattr(st, "experimental_fragment", None)
