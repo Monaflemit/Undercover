@@ -1,5 +1,7 @@
-#cd "C:\Users\quewa\Documents\pyzo\Git\Undercover"; python -m streamlit run "Undercover.py"
-
+#cd "C:\Users\quewa\Documents\pyzo\Undercover"
+#python -m streamlit run "Undercover.py"
+#ou
+#cd "C:\Users\quewa\Documents\pyzo\Undercover"; python -m streamlit run "Undercover.py"
 from __future__ import annotations
 
 import json, os, random, re, tempfile, time, uuid, zipfile
@@ -7,13 +9,18 @@ from contextlib import contextmanager
 from pathlib import Path
 from typing import Any
 from xml.etree import ElementTree as ET
+from tkinter import Tk, filedialog
 
 import streamlit as st
+
+
+#Recherche de fichier
 
 
 
 import openpyxl  # Pour lire les fichiers Excel (.xlsx)
 from io import BytesIO  
+
 
 
 APP_DIR = Path(__file__).resolve().parent
@@ -29,6 +36,27 @@ ODS_NS = {
     "text": "urn:oasis:names:tc:opendocument:xmlns:text:1.0",
 }
 
+def select_file():
+    # Masquer la fenêtre principale Tkinter
+    root = Tk()
+    root.withdraw()
+
+    # Ouvrir l'explorateur pour sélectionner un fichier ODS
+    fichier_ods = filedialog.askopenfilename(
+        title="Sélectionner un fichier ODS",
+        filetypes=[
+            ("Fichiers ODS", "*.ods"),
+            ("Tous les fichiers", "*.*")
+        ]
+    )
+
+    # Vérifier si un fichier a été sélectionné
+    if fichier_ods:
+        print("Chemin du fichier sélectionné :")
+        print(fichier_ods)
+        DATA_FILE = fichier_ods
+    else:
+        print("Aucun fichier sélectionné.")
 
 def live_fragment(run_every: str | int | float | None = None):
     fragment_api = getattr(st, "fragment", None) or getattr(st, "experimental_fragment", None)
@@ -377,7 +405,7 @@ def initialize_match(room: dict[str, Any], game_data: dict[str, Any]) -> None:
         "created_at": now_ts(),
     }
 
-
+#Ce fonction permet calculer les points civils et traitres : si civils gagne alors ils gagnent un points chacun sino le traitre gagne 3
 def compute_scores(room: dict[str, Any]) -> None:
     match = room["match"]
     winner = match["winner"]
@@ -386,9 +414,9 @@ def compute_scores(room: dict[str, Any]) -> None:
             if assignment["role"] == "civil":
                 room["players"][player_id]["score"] += 1
     elif winner == "undercover":
-        civilians_count = sum(1 for assignment in match["assignments"].values() if assignment["role"] == "civil")
-        points = max(1, 5 - civilians_count)
-        room["players"][match["undercover_id"]]["score"] += points
+        #civilians_count = sum(1 for assignment in match["assignments"].values() if assignment["role"] == "civil")
+        #points = max(1, 5 - civilians_count)
+        room["players"][match["undercover_id"]]["score"] += 3
 
 
 def resolve_vote(room: dict[str, Any]) -> None:
@@ -671,7 +699,6 @@ def render_player_card(room: dict[str, Any], player_id: str, game_data: dict[str
         st.caption(title)
 
 
-
 def render_lobby(room: dict[str, Any], player_id: str, game_data: dict[str, Any]) -> None:
     host_id = room["host_id"]
     active_players = [player for player in room["players"].values() if not player.get("removed")]
@@ -823,11 +850,10 @@ def render_live_sidebar() -> None:
     else:
         st.caption("Aucune salle rejointe.")
 
-
-@st.fragment(run_every="2s")
 def get_room_game_data(room: dict[str, Any], default_game_data: dict[str, Any]) -> dict[str, Any]:
     """Retourne les données du jeu : personnalisées si disponibles, sinon par défaut"""
     return room.get("custom_game_data", default_game_data)
+
 
 @st.fragment(run_every="2s")
 def render_live_main(game_data: dict[str, Any]) -> None:
@@ -852,7 +878,6 @@ def render_live_main(game_data: dict[str, Any]) -> None:
                 )
                 
                 create_submitted = st.form_submit_button("Créer une partie", type="primary")
-                
                 if create_submitted:
                     cleaned = host_name.strip()
                     if not cleaned:
@@ -991,10 +1016,14 @@ def render_live_main(game_data: dict[str, Any]) -> None:
                     continue_after_result(room["code"], room_game_data)
                     st.rerun()
 
+
 def main() -> None:
     st.set_page_config(page_title="Undercover", page_icon="🕵️", layout="wide")
     st.title("Undercover multijoueur")
     st.caption("Application Streamlit pour créer une salle, distribuer les rôles et gérer les votes.")
+    Select_Button = st.button("Choisir le fichier.ods", type="primary")
+    if Select_Button:
+        select_file()
 
     try:
         game_data = load_game_data()
